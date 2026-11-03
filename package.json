@@ -1,11 +1,14 @@
 {
-  "name": "com.vitalhour.app",
+  "name": "pt.pap.vitalhour",
   "displayName": "VitalHour",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx cordova prepare && npx cordova run android",
+    "gradle": "powershell -ExecutionPolicy Bypass -File install-gradle.ps1",
+    "set-path": "setx ANDROID_HOME \"C:\\Users\\a37825\\AppData\\Local\\Android\\Sdk\" && setx PATH \"%PATH%;%ANDROID_HOME%\\tools;%ANDROID_HOME%\\platform-tools\""
   },
   "keywords": [
     "ecosystem:cordova"
