@@ -2,6 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitalHour - Login</title>
 </head>
 <body>
@@ -13,21 +14,28 @@
         <button onclick="tentarLogin()">Entrar</button>
     </div>
 
-    <!-- Importar o nosso script de dados -->
-    <script src="js/database.js"></script>
-    <script>
-        function tentarLogin() {
+    <!-- Importação das funções e lógica de Login -->
+    <script type="module">
+        import { fazerLogin, registarUtilizador } from './js/database.js';
+
+        // Definir a função no window para o botão 'onclick' conseguir encontrá-la
+        window.tentarLogin = function() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
-            // Para testes: se não houver ninguém registado, criamos um de teste automaticamente
+            if (!email || !password) {
+                alert("Por favor, preenche o email e a palavra-passe.");
+                return;
+            }
+
+            // Para testes: se não houver ninguém registado, cria uma conta automática
             if (!localStorage.getItem("utilizadorVitalHour")) {
                 registarUtilizador("admin@vitalhour.com", "1234");
                 alert("Conta de teste criada automaticamente: admin@vitalhour.com / 1234");
             }
 
             fazerLogin(email, password);
-        }
+        };
     </script>
 </body>
 </html>
